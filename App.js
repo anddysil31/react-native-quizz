@@ -1,49 +1,73 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Button from './components/Button';
-import ImageViewer from './components/ImageViewer';
-import ViewTeam from './components/ViewTeam';
+import { Button, StyleSheet, Text, View, Image } from 'react-native';
 
 
-const Francia1 = require('./assets/fr1.jpg');
-const Francia2 = require('./assets/fr2.jpg');
-const Francia3 = require('./assets/fr3.jpg');
 
-const ARG1 = require('./assets/a1.jpg');
-const ARG2 = require('./assets/a2.jpg');
-const ARG3 = require('./assets/a3.jpg');
+const fr1 = require('./assets/fr1.jpg');
+const fr2 = require('./assets/fr2.jpg');
+const fr3 = require('./assets/fr3.jpg');
 
-const M1 = require('./assets/m1.jpg');
-const M2 = require('./assets/m2.jpg');
-const M3 = require('./assets/m3.jpg');
+const arg1 = require('./assets/a1.jpg');
+const arg2 = require('./assets/a2.jpg');
+const arg3 = require('./assets/a3.jpg');
+
+const m1 = require('./assets/m1.jpg');
+const m2 = require('./assets/m2.jpg');
+const m3 = require('./assets/m3.jpg');
+
 
 
 export default function App() {
-  const[setpickImageAsync] = useState(false)
-  const image =() =>{
-    setpickImageAsync(false)
-  }
-    
-
- 
-
+const [showArg, setShowArg] = useState(false)
+const [showFr, setShowFr] = useState(false)
+const [showMrr, setShowMrr] = useState(false)
+let francia = [fr1, fr2, fr3]
+let argentina = [arg1, arg2, arg3]
+let marruecos = [m1,m2,m3]
   return (
-    <View style={styles.container}>
-
-    <Button theme = "fra" label="Francia" onPress={()=>image()}/>
-    {image ?(
-      <View style = {styles.imageContainer}> 
-      <ImageViewer placeholderImageSource={Francia1} />
-      <ImageViewer placeholderImageSource={Francia2} />
-      <ImageViewer placeholderImageSource={Francia3} />
-    </View>
-    ):(<View></View>)}
-    <Button theme = "fra" label="Argentina" onPress={()=>image()}/>
-    <Button theme = "fra" label="Marruecos" onPress={()=>image()}/>
-
-      <StatusBar style="auto" />
-    </View>
+    <View>
+    <Image source={require ('./assets/qatarlogo.png')} style = {styles.logo}/>
+    <Button title="Francia" onPress={() => setShowFr(!showFr)}/>
+    <Button title='Argentina' onPress={()=>setShowArg(!showArg)}/>
+    <Button title='Marruecos' onPress={()=>setShowMrr(!showMrr)}/>
+    {showFr && (
+      <View>
+        {francia.map((item)=>{
+          return(
+          <Image
+          source={item}
+        style={{ width: 200, height: 200 }}
+      />
+          )})}
+      
+      </View>
+    )}
+    {showArg && (
+      <View>
+        {argentina.map((item)=>{
+          return(
+          <Image
+          source={item}
+        style={{ width: 200, height: 200 }}
+      />
+          )})}
+      
+      </View>
+    )}
+    {showMrr && (
+      <View>
+        {marruecos.map((item)=>{
+          return(
+          <Image
+          source={item}
+        style={{ width: 200, height: 200 }}
+      />
+          )})}
+      
+      </View>
+    )}
+  </View>
   );
 }
 
@@ -57,5 +81,12 @@ const styles = StyleSheet.create({
   imageContainer:{
     flex:1,
     paddingTop:58,
+  },
+  logo:{
+    display:'flex',
+    alignItems:'center',
+    justifyContent:'center',
+    width:300,
+    height:300
   }
 });
