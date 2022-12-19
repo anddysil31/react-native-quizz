@@ -26,42 +26,42 @@ let francia = [fr1, fr2, fr3]
 let argentina = [arg1, arg2, arg3]
 let marruecos = [m1,m2,m3]
   return (
-    <View>
+    <View style={styles.container}>
     <Image source={require ('./assets/qatarlogo.png')} style = {styles.logo}/>
     <Button title="Francia" onPress={() => setShowFr(!showFr)}/>
     <Button title='Argentina' onPress={()=>setShowArg(!showArg)}/>
     <Button title='Marruecos' onPress={()=>setShowMrr(!showMrr)}/>
     {showFr && (
-      <View>
+      <View style={styles.imageContainer}>
         {francia.map((item)=>{
           return(
           <Image
           source={item}
-        style={{ width: 200, height: 200 }}
+        style={styles.image}
       />
           )})}
       
       </View>
     )}
     {showArg && (
-      <View>
+      <View style={styles.imageContainer}>
         {argentina.map((item)=>{
           return(
           <Image
           source={item}
-        style={{ width: 200, height: 200 }}
+        style={styles.image}
       />
           )})}
       
       </View>
     )}
     {showMrr && (
-      <View>
+      <View style={styles.imageContainer}>
         {marruecos.map((item)=>{
           return(
           <Image
           source={item}
-        style={{ width: 200, height: 200 }}
+        style={styles.image}
       />
           )})}
       
@@ -79,8 +79,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   imageContainer:{
-    flex:1,
-    paddingTop:58,
+    display:'flex',
+    flexDirection:'row',
+    
+  },
+  image:{
+    width:100,
+    height:100,
+    marginRight:'10px'
+
   },
   logo:{
     display:'flex',
